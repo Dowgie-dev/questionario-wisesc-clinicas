@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questionário | WISESC Soluções Corporativas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --verde-escuro: #1e4d2b;
+      --verde-medio: #2a6e3a;
+      --verde-claro: #3a8c50;
+      --verde-acento: #4caf64;
+      --cinza-escuro: #2c2c2c;
+      --cinza-medio: #555555;
+      --cinza-claro: #f4f6f4;
+      --branco: #ffffff;
+      --borda: #d0dcd2;
+      --sombra: rgba(30, 77, 43, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cinza-claro);
+      color: var(--cinza-escuro);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* HEADER */
+    header {
+      width: 100%;
+      background: var(--verde-escuro);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+    header img {
+      height: 64px;
+      width: auto;
+    }
+    header .header-text {
+      display: flex;
+      flex-direction: column;
+    }
+    header .header-text span:first-child {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    header .header-text span:last-child {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.25rem;
+      color: var(--branco);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    /* WRAPPER */
+    .wrapper {
+      width: 100%;
+      max-width: 720px;
+      padding: 40px 24px 64px;
+    }
+
+    /* INTRO CARD */
+    .intro-card {
+      background: var(--branco);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px var(--sombra);
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      border-left: 5px solid var(--verde-claro);
+    }
+    .intro-card h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--verde-escuro);
+      margin-bottom: 10px;
+    }
+    .intro-card p {
+      font-size: 0.97rem;
+      color: var(--cinza-medio);
+      line-height: 1.7;
+    }
+    .intro-card .badge {
+      display: inline-block;
+      margin-top: 14px;
+      background: #e6f4ea;
+      color: var(--verde-medio);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    /* PROGRESS */
+    .progress-wrap {
+      margin-bottom: 28px;
+    }
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--verde-medio);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .progress-bar {
+      height: 7px;
+      background: #d0e6d5;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--verde-claro), var(--verde-acento));
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+
+    /* QUESTION CARD */
+    .question-card {
+      background: var(--branco);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px var(--sombra);
+      padding: 36px 40px;
+      animation: fadeSlide 0.35s ease;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--verde-claro);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .question-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--cinza-escuro);
+      margin-bottom: 6px;
+      line-height: 1.45;
+    }
+    .question-hint {
+      font-size: 0.875rem;
+      color: var(--cinza-medio);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* OPTIONS */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 2px solid var(--borda);
+      border-radius: 10px;
+      background: var(--branco);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--cinza-escuro);
+      text-align: left;
+    }
+    .option-btn .opt-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #e6f4ea;
+      color: var(--verde-claro);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .option-btn:hover {
+      border-color: var(--verde-claro);
+      background: #f0faf2;
+      box-shadow: 0 2px 10px var(--sombra);
+    }
+    .option-btn.selected {
+      border-color: var(--verde-medio);
+      background: #e6f4ea;
+      box-shadow: 0 2px 12px var(--sombra);
+    }
+    .option-btn.selected .opt-icon {
+      background: var(--verde-medio);
+      color: #fff;
+    }
+
+    /* TEXT INPUT */
+    .text-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--borda);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--cinza-escuro);
+      resize: vertical;
+      min-height: 90px;
+      transition: border-color 0.2s;
+      background: var(--branco);
+    }
+    .text-input:focus {
+      outline: none;
+      border-color: var(--verde-claro);
+    }
+
+    /* NAME/SHORT INPUT */
+    .short-input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid var(--borda);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--cinza-escuro);
+      transition: border-color 0.2s;
+      background: var(--branco);
+    }
+    .short-input:focus {
+      outline: none;
+      border-color: var(--verde-claro);
+    }
+
+    /* NAVIGATION */
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+      gap: 12px;
+    }
+    .btn-back {
+      padding: 11px 22px;
+      border: 2px solid var(--borda);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--cinza-medio);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-back:hover {
+      border-color: var(--verde-claro);
+      color: var(--verde-escuro);
+    }
+    .btn-next {
+      padding: 13px 32px;
+      background: var(--verde-escuro);
+      color: var(--branco);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 14px rgba(30,77,43,0.25);
+    }
+    .btn-next:hover { background: var(--verde-medio); transform: translateY(-1px); }
+    .btn-next:disabled { background: #a0b8a4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* SUMMARY & FINISH */
+    .summary-card {
+      background: var(--branco);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px var(--sombra);
+      padding: 36px 40px;
+    }
+    .summary-card h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--verde-escuro);
+      margin-bottom: 6px;
+    }
+    .summary-card .sub {
+      font-size: 0.9rem;
+      color: var(--cinza-medio);
+      margin-bottom: 24px;
+    }
+    .summary-item {
+      border-bottom: 1px solid var(--borda);
+      padding: 12px 0;
+    }
+    .summary-item:last-child { border-bottom: none; }
+    .summary-item .q-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--verde-medio);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 3px;
+    }
+    .summary-item .q-answer {
+      font-size: 0.95rem;
+      color: var(--cinza-escuro);
+      font-weight: 500;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 28px;
+      padding: 16px 28px;
+      background: #25d366;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.3);
+      transition: background 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .btn-whatsapp:hover { background: #1ebe5c; transform: translateY(-2px); }
+    .btn-whatsapp svg { flex-shrink: 0; }
+
+    /* SUCCESS */
+    .success-card {
+      background: var(--branco);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px var(--sombra);
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: #e6f4ea;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .success-card h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--verde-escuro);
+      margin-bottom: 10px;
+    }
+    .success-card p {
+      font-size: 0.96rem;
+      color: var(--cinza-medio);
+      line-height: 1.7;
+    }
+
+    /* ERROR MESSAGE */
+    .error-msg {
+      color: #c0392b;
+      font-size: 0.82rem;
+      margin-top: 6px;
+      display: none;
+    }
+    .error-msg.visible { display: block; }
+
+    /* FOOTER */
+    footer {
+      width: 100%;
+      padding: 20px 32px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #8a9a8d;
+    }
+
+    @media (max-width: 560px) {
+      .intro-card, .question-card, .summary-card, .success-card { padding: 26px 20px; }
+      header { padding: 16px 20px; }
+      header img { height: 50px; }
+      .wrapper { padding: 24px 14px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="data:image/jpeg;base64,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" alt="Logo WISESC" />
+  <div class="header-text">
+    <span>Bem-vindo ao</span>
+    <span>WISESC — Soluções Corporativas</span>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <!-- INTRO -->
+  <div class="intro-card" id="introCard">
+    <h1>Olá! 👋</h1>
+    <p>
+      Ficamos felizes com o seu contato! Para que possamos entender melhor a sua situação e oferecer o melhor atendimento,
+      preparamos algumas perguntas rápidas sobre o seu consultório.
+      <br><br>
+      Será rápido — em seguida, suas respostas serão enviadas diretamente para nossa equipe via WhatsApp.
+    </p>
+    <span class="badge">⏱ Menos de 3 minutos</span>
+    <br>
+    <button class="btn-next" style="margin-top:18px;" onclick="startQuiz()">Começar →</button>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progressWrap" style="display:none">
+    <div class="progress-info">
+      <span id="progressLabel">Pergunta 1 de 7</span>
+      <span id="progressPct">14%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width:14%"></div>
+    </div>
+  </div>
+
+  <!-- QUESTION CARD -->
+  <div id="questionArea" style="display:none"></div>
+
+  <!-- SUMMARY CARD -->
+  <div id="summaryArea" style="display:none"></div>
+
+  <!-- SUCCESS CARD -->
+  <div id="successArea" style="display:none">
+    <div class="success-card">
+      <div class="success-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2a6e3a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h2>Respostas enviadas com sucesso!</h2>
+      <p>Nossa equipe já recebeu suas informações e entrará em contato em breve para orientá-lo sobre a abertura do consultório.<br><br>Obrigado pela confiança na <strong>WISESC</strong>!</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>© 2025 WISESC Soluções Corporativas Inteligentes · +55 35 99905-1133</footer>
+
+<script>
+  const questions = [
+    {
+      id: "nome",
+      type: "short",
+      label: "Seu nome completo",
+      text: "Qual é o seu nome completo?",
+      hint: "Para personalizarmos o atendimento.",
+      placeholder: "Ex.: João Silva"
+    },
+    {
+      id: "tipo_consultorio",
+      type: "options",
+      label: "Tipo de consultório",
+      text: "Qual é a especialidade do consultório que vocês vão abrir?",
+      hint: "Isso nos ajuda a entender a área de atuação.",
+      options: [
+        { icon: "🦷", text: "Odontologia" },
+        { icon: "🩺", text: "Clínica Médica" },
+        { icon: "🧠", text: "Psicologia / Psiquiatria" },
+        { icon: "💆", text: "Fisioterapia / Estética" },
+        { icon: "🔬", text: "Outra especialidade" }
+      ]
+    },
+    {
+      id: "fase_abertura",
+      type: "options",
+      label: "Fase de abertura",
+      text: "Em que fase está a abertura do consultório?",
+      hint: "Isso nos ajuda a entender o momento certo para cada orientação.",
+      options: [
+        { icon: "💡", text: "Ainda planejando / pesquisando" },
+        { icon: "📋", text: "Já decidimos abrir, mas ainda sem CNPJ" },
+        { icon: "🏢", text: "CNPJ em processo de abertura" },
+        { icon: "✅", text: "Já aberto, precisamos regularizar" }
+      ]
+    },
+    {
+      id: "forma_atuacao",
+      type: "options",
+      label: "Forma de atuação",
+      text: "Como pretendem atuar no consultório?",
+      hint: "Isso influencia diretamente o regime tributário mais adequado.",
+      options: [
+        { icon: "👤", text: "Somente atendimento particular" },
+        { icon: "🏥", text: "Convênios / planos de saúde" },
+        { icon: "🔀", text: "Particular e convênios" },
+        { icon: "❓", text: "Ainda não decidimos" }
+      ]
+    },
+    {
+      id: "faturamento",
+      type: "options",
+      label: "Faturamento estimado",
+      text: "Qual é a expectativa de faturamento mensal do consultório?",
+      hint: "Uma estimativa já nos ajuda bastante para indicar o melhor regime tributário.",
+      options: [
+        { icon: "💰", text: "Até R$ 5.000 / mês" },
+        { icon: "💰", text: "De R$ 5.000 a R$ 15.000 / mês" },
+        { icon: "💰", text: "De R$ 15.000 a R$ 40.000 / mês" },
+        { icon: "💰", text: "Acima de R$ 40.000 / mês" },
+        { icon: "❓", text: "Não sei ainda" }
+      ]
+    },
+    {
+      id: "duvida_principal",
+      type: "options",
+      label: "Principal dúvida",
+      text: "Qual é a sua principal dúvida neste momento?",
+      hint: "Você pode escolher a que mais se encaixa.",
+      options: [
+        { icon: "📑", text: "Nota fiscal: como emitir e quando" },
+        { icon: "💸", text: "Impostos: quais vou pagar e quanto" },
+        { icon: "🧾", text: "Simples Nacional, MEI ou outro regime" },
+        { icon: "📂", text: "Documentos para abrir o CNPJ" },
+        { icon: "🔄", text: "Tenho várias dúvidas sobre tudo isso" }
+      ]
+    },
+    {
+      id: "num_socios",
+      type: "options",
+      label: "Quantidade de sócios",
+      text: "Quantos sócios terá o consultório?",
+      hint: "Isso impacta diretamente na estrutura jurídica e tributária da empresa.",
+      options: [
+        { icon: "👤", text: "Apenas 1 (empresa individual)" },
+        { icon: "👥", text: "2 sócios" },
+        { icon: "👨‍👩‍👦", text: "3 sócios" },
+        { icon: "🏢", text: "4 ou mais sócios" }
+      ]
+    },
+    {
+      id: "num_funcionarios",
+      type: "options",
+      label: "Quantidade de funcionários",
+      text: "Pretende contratar funcionários (CLT)?",
+      hint: "Saber isso nos ajuda a orientar sobre encargos trabalhistas e folha de pagamento.",
+      options: [
+        { icon: "🚫", text: "Não, apenas os sócios trabalharão" },
+        { icon: "1️⃣", text: "1 a 2 funcionários" },
+        { icon: "👨‍💼", text: "3 a 5 funcionários" },
+        { icon: "🏢", text: "Mais de 5 funcionários" },
+        { icon: "❓", text: "Ainda não decidimos" }
+      ]
+    },
+    {
+      id: "observacoes",
+      type: "text",
+      label: "Informações adicionais",
+      text: "Gostaria de adicionar mais alguma informação?",
+      hint: "Conte-nos qualquer detalhe que julgue relevante. Campo opcional.",
+      placeholder: "Ex.: Sou médica, vou trabalhar com cirurgias e preciso saber sobre as notas fiscais de procedimentos…"
+    }
+  ];
+
+  let current = 0;
+  const answers = {};
+
+  function updateProgress() {
+    const pct = Math.round(((current) / questions.length) * 100);
+    document.getElementById("progressLabel").textContent = `Pergunta ${current + 1} de ${questions.length}`;
+
+    document.getElementById("progressPct").textContent = `${pct}%`;
+    document.getElementById("progressFill").style.width = pct + "%";
+  }
+
+  function renderQuestion() {
+    const q = questions[current];
+    document.getElementById("progressWrap").style.display = "block";
+    document.getElementById("introCard").style.display = "none";
+    updateProgress();
+
+    let innerHtml = `
+      <div class="question-num">Pergunta ${current + 1} de ${questions.length}</div>
+      <div class="question-text">${q.text}</div>
+      <div class="question-hint">${q.hint}</div>
+    `;
+
+    if (q.type === "options") {
+      innerHtml += `<div class="options-grid" id="optionsGrid">`;
+      q.options.forEach((opt, i) => {
+        const sel = answers[q.id] === opt.text ? " selected" : "";
+        innerHtml += `
+          <button class="option-btn${sel}" onclick="selectOption('${q.id}', ${i})">
+            <span class="opt-icon">${opt.icon}</span>
+            <span>${opt.text}</span>
+          </button>`;
+      });
+      innerHtml += `</div>`;
+    } else if (q.type === "text") {
+      innerHtml += `<textarea class="text-input" id="textInput" placeholder="${q.placeholder}" oninput="answers['${q.id}'] = this.value">${answers[q.id] || ""}</textarea>`;
+    } else if (q.type === "short") {
+      innerHtml += `<input type="text" class="short-input" id="shortInput" placeholder="${q.placeholder}" value="${answers[q.id] || ""}" oninput="answers['${q.id}'] = this.value" />`;
+    }
+
+    innerHtml += `<p class="error-msg" id="errMsg">Por favor, responda esta pergunta antes de continuar.</p>`;
+    innerHtml += `
+      <div class="nav-row">
+        ${current > 0 ? `<button class="btn-back" onclick="goBack()">← Voltar</button>` : `<div></div>`}
+        <button class="btn-next" onclick="goNext()">${current < questions.length - 1 ? "Próxima →" : "Revisar respostas"}</button>
+      </div>
+    `;
+
+    document.getElementById("questionArea").innerHTML = `<div class="question-card">${innerHtml}</div>`;
+  }
+
+  function selectOption(qId, idx) {
+    const q = questions.find(q => q.id === qId);
+    answers[qId] = q.options[idx].text;
+    document.querySelectorAll(".option-btn").forEach((btn, i) => {
+      btn.classList.toggle("selected", i === idx);
+    });
+    document.getElementById("errMsg").classList.remove("visible");
+  }
+
+  function goNext() {
+    const q = questions[current];
+    if (q.type !== "text" && !answers[q.id]) {
+      document.getElementById("errMsg").classList.add("visible");
+      return;
+    }
+    current++;
+    if (current < questions.length) {
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      showSummary();
+    }
+  }
+
+  function goBack() {
+    current--;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function showSummary() {
+    document.getElementById("questionArea").style.display = "none";
+    document.getElementById("progressWrap").style.display = "none";
+
+    let html = `
+      <div class="summary-card">
+        <h2>Revise suas respostas</h2>
+        <p class="sub">Tudo certo? Clique em "Enviar pelo WhatsApp" para mandar para nossa equipe.</p>
+    `;
+    questions.forEach(q => {
+      html += `
+        <div class="summary-item">
+          <div class="q-label">${q.label}</div>
+          <div class="q-answer">${answers[q.id] || "<em style='color:#bbb'>Não informado</em>"}</div>
+        </div>
+      `;
+    });
+    html += `
+      <a class="btn-whatsapp" id="waBtn" href="#" onclick="sendWhatsApp()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        Enviar pelo WhatsApp
+      </a>
+      <div style="margin-top:14px; text-align:center">
+        <button onclick="editAnswers()" style="background:none;border:none;color:#777;font-size:0.85rem;cursor:pointer;text-decoration:underline;">✏️ Editar respostas</button>
+      </div>
+    </div>
+    `;
+    document.getElementById("summaryArea").style.display = "block";
+    document.getElementById("summaryArea").innerHTML = html;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function editAnswers() {
+    current = 0;
+    document.getElementById("summaryArea").style.display = "none";
+    document.getElementById("questionArea").style.display = "block";
+    document.getElementById("progressWrap").style.display = "block";
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function sendWhatsApp() {
+    const phone = "5535999051133";
+    let msg = "Olá! Sou indicação de um dos seus clientes. Respondi o questionário de primeiro contato. Seguem minhas respostas:\n\n";
+    questions.forEach(q => {
+      msg += `*${q.label}:* ${answers[q.id] || "Não informado"}\n`;
+    });
+    msg += "\nAguardo o contato da equipe WISESC. Obrigado!";
+    const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
+    window.open(url, "_blank");
+
+    document.getElementById("summaryArea").style.display = "none";
+    document.getElementById("successArea").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // Garante que a página sempre abre no topo
+  window.scrollTo({ top: 0 });
+  history.scrollRestoration = "manual";
+
+  function startQuiz() {
+    document.getElementById("introCard").style.display = "none";
+    document.getElementById("progressWrap").style.display = "block";
+    document.getElementById("questionArea").style.display = "block";
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
+</body>
+</html>
